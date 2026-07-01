@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemical Equilibrium Concept Map - Salvador Siucho Garofolin</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .poster-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(90deg, #e94560 0%, #ff6b6b 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(233, 69, 96, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+        }
+        
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.2em;
+            font-weight: 800;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+            position: relative;
+            letter-spacing: -1px;
+        }
+        
+        .header .subtitle {
+            font-size: 1.3em;
+            color: rgba(255,255,255,0.9);
+            font-weight: 600;
+            position: relative;
+        }
+        
+        .header .author {
+            margin-top: 15px;
+            font-size: 1.1em;
+            color: rgba(255,255,255,0.85);
+            font-weight: 600;
+            position: relative;
+            background: rgba(0,0,0,0.2);
+            display: inline-block;
+            padding: 8px 25px;
+            border-radius: 30px;
+        }
+        
+        /* Molecule decorations */
+        .molecule {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            opacity: 0.15;
+        }
+        
+        .mol-1 { top: 10px; left: 30px; }
+        .mol-2 { top: 20px; right: 40px; }
+        .mol-3 { bottom: 10px; left: 50%; transform: translateX(-50%); }
+        
+        /* Main Concept Map Grid */
+        .concept-map {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        /* Central Node - Le Chatelier */
+        .central-node {
+            grid-column: 2;
+            grid-row: 1 / 3;
+            background: linear-gradient(145deg, #ffd700 0%, #ffb347 100%);
+            border-radius: 25px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(255, 183, 77, 0.4);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 300px;
+            border: 5px solid rgba(255,255,255,0.3);
+        }
+        
+        .central-node h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+        
+        .central-node p {
+            color: #333;
+            font-size: 1em;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+        
+        .central-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+        
+        /* Topic Cards */
+        .topic-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-left: 6px solid;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+        
+        .topic-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(0,0,0,0.03) 0%, transparent 70%);
+            border-radius: 0 0 0 80px;
+        }
+        
+        .topic-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .topic-card p, .topic-card ul {
+            font-size: 0.95em;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .topic-card ul {
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+        
+        .topic-card li {
+            margin-bottom: 6px;
+        }
+        
+        /* Color coding */
+        .card-blue { border-left-color: #3498db; }
+        .card-blue h3 { color: #2980b9; }
+        
+        .card-green { border-left-color: #2ecc71; }
+        .card-green h3 { color: #27ae60; }
+        
+        .card-red { border-left-color: #e74c3c; }
+        .card-red h3 { color: #c0392b; }
+        
+        .card-purple { border-left-color: #9b59b6; }
+        .card-purple h3 { color: #8e44ad; }
+        
+        .card-orange { border-left-color: #e67e22; }
+        .card-orange h3 { color: #d35400; }
+        
+        .card-teal { border-left-color: #1abc9c; }
+        .card-teal h3 { color: #16a085; }
+        
+        /* Formula Box */
+        .formula-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px dashed #3498db;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 12px 0;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c3e50;
+            position: relative;
+        }
+        
+        .formula-box::before {
+            content: 'FORMULA';
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: white;
+            padding: 0 8px;
+            font-size: 0.7em;
+            color: #3498db;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Connection Lines (Visual) */
+        .connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 2em;
+            margin: 10px 0;
+        }
+        
+        /* Bottom Section - Changes Summary */
+        .changes-section {
+            background: linear-gradient(145deg, #ffffff 0%, #f0f4f8 100%);
+            border-radius: 20px;
+            padding: 35px;
+            margin-top: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        
+        .changes-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            color: #1a1a2e;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+        }
+        
+        .changes-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+        
+        .change-item {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            border-top: 4px solid;
+        }
+        
+        .change-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .change-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .change-item h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1em;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        
+        .change-item p {
+            font-size: 0.85em;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        .chg-conc { border-top-color: #e74c3c; }
+        .chg-temp { border-top-color: #e67e22; }
+        .chg-pressure { border-top-color: #9b59b6; }
+        .chg-volume { border-top-color: #3498db; }
+        .chg-catalyst { border-top-color: #2ecc71; }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9em;
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .concept-map {
+                grid-template-columns: 1fr;
+            }
+            .central-node {
+                grid-column: 1;
+                grid-row: auto;
+            }
+            .changes-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+        
+        /* Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .central-node {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        /* Tooltip for extra info */
+        .tooltip {
+            position: relative;
+            cursor: help;
+            border-bottom: 2px dotted #e94560;
+        }
+        
+        /* Highlight text */
+        .highlight {
+            background: linear-gradient(120deg, #ffeaa7 0%, #ffeaa7 100%);
+            background-repeat: no-repeat;
+            background-size: 100% 40%;
+            background-position: 0 88%;
+            padding: 0 4px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="poster-container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="molecule mol-1">⚛️</div>
+            <div class="molecule mol-2">🧪</div>
+            <div class="molecule mol-3">⚗️</div>
+            <h1>CHEMICAL EQUILIBRIUM</h1>
+            <div class="subtitle">Interactive Concept Map for AP Chemistry</div>
+            <div class="author">By Salvador Siucho Garofolin | AP Chemistry OL v5B</div>
+        </div>
+        
+        <!-- MAIN CONCEPT MAP -->
+        <div class="concept-map">
+            <!-- TOPIC 1: Equilibrium Constant -->
+            <div class="topic-card card-blue">
+                <h3>⚖️ Equilibrium Constant (K)</h3>
+                <p>A quantitative measure of the extent to which a reaction proceeds toward products at equilibrium.</p>
+                <ul>
+                    <li><span class="highlight">K > 1</span>: Products favored</li>
+                    <li><span class="highlight">K < 1</span>: Reactants favored</li>
+                    <li><span class="highlight">K = 1</span>: Comparable amounts</li>
+                    <li>Temperature dependent only</li>
+                </ul>
+            </div>
+            
+            <!-- CENTRAL NODE: Le Chatelier's Principle -->
+            <div class="central-node">
+                <div class="central-icon">🔄</div>
+                <h2>Le Chatelier's Principle</h2>
+                <p>"If a dynamic equilibrium is disturbed by changing the conditions, the position of equilibrium moves to counteract the disturbance and restore a new equilibrium."</p>
+                <div style="margin-top:20px; font-size:0.9em; color:#555; font-weight:700;">
+                    The System Always Fights Back!
+                </div>
+            </div>
+            
+            <!-- TOPIC 2: Writing K Expression -->
+            <div class="topic-card card-green">
+                <h3>📝 Writing K Expression</h3>
+                <p>For a general reaction: <strong>aA + bB ⇌ cC + dD</strong></p>
+                <div class="formula-box">
+                    K = [C]ᶜ[D]ᵈ / [A]ᵃ[B]ᵇ
+                </div>
+                <ul>
+                    <li>Products in <span class="highlight">numerator</span></li>
+                    <li>Reactants in <span class="highlight">denominator</span></li>
+                    <li>Coefficients become <span class="highlight">exponents</span></li>
+                    <li><strong>Solids & pure liquids are omitted!</strong></li>
+                </ul>
+            </div>
+            
+            <!-- TOPIC 3: Reaction Quotient -->
+            <div class="topic-card card-purple">
+                <h3>🔍 Reaction Quotient (Q)</h3>
+                <p>Used to determine the direction a reaction will shift to reach equilibrium:</p>
+                <div class="formula-box">
+                    Q = [Products] / [Reactants]
+                </div>
+                <ul>
+                    <li><span class="highlight">Q < K</span>: Shift → Right (toward products)</li>
+                    <li><span class="highlight">Q > K</span>: Shift → Left (toward reactants)</li>
+                    <li><span class="highlight">Q = K</span>: At equilibrium</li>
+                </ul>
+            </div>
+            
+            <!-- PLACEHOLDER for grid balance -->
+            <div style="grid-column: 2; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.4); font-size:1.2em; font-style:italic;">
+                ← System responds to stress →
+            </div>
+            
+            <!-- TOPIC 4: Kp vs Kc -->
+            <div class="topic-card card-orange">
+                <h3>📊 Kp and Kc</h3>
+                <p>Two ways to express equilibrium:</p>
+                <ul>
+                    <li><span class="highlight">Kc</span>: Concentration (mol/L)</li>
+                    <li><span class="highlight">Kp</span>: Partial pressure (atm)</li>
+                    <li>Relationship: <strong>Kp = Kc(RT)^Δn</strong></li>
+                    <li>Δn = moles gas products − moles gas reactants</li>
+                </ul>
+            </div>
+            
+            <!-- TOPIC 5: ICE Tables -->
+            <div class="topic-card card-teal">
+                <h3>📐 ICE Tables</h3>
+                <p>A systematic method to calculate equilibrium concentrations:</p>
+                <ul>
+                    <li><span class="highlight">I</span>nitial concentration</li>
+                    <li><span class="highlight">C</span>hange (use −x and +x)</li>
+                    <li><span class="highlight">E</span>quilibrium expression</li>
+                    <li>Solve for x, then find all concentrations</li>
+                </ul>
+            </div>
+            
+            <!-- TOPIC 6: Heterogeneous Equilibria -->
+            <div class="topic-card card-red">
+                <h3>🧱 Heterogeneous Equilibria</h3>
+                <p>When reactants and products are in different phases:</p>
+                <ul>
+                    <li><span class="highlight">Pure solids</span> are NOT included in K</li>
+                    <li><span class="highlight">Pure liquids</span> are NOT included in K</li>
+                    <li>Only <span class="highlight">aqueous & gas</span> species appear</li>
+                    <li>Example: CaCO₃(s) ⇌ CaO(s) + CO₂(g) → K = [CO₂]</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- CHANGES SECTION -->
+        <div class="changes-section">
+            <h2>⚡ Effects of Changes on Equilibrium (Le Chatelier's Principle)</h2>
+            <div class="changes-grid">
+                <div class="change-item chg-conc">
+                    <div class="change-icon">💧</div>
+                    <h4>Concentration</h4>
+                    <p>Increase [reactant] → shifts <strong>right</strong><br>Increase [product] → shifts <strong>left</strong><br>Decrease → opposite shift</p>
+                </div>
+                
+                <div class="change-item chg-temp">
+                    <div class="change-icon">🌡️</div>
+                    <h4>Temperature</h4>
+                    <p>Exothermic (ΔH < 0): Heat = product<br>↑T → shifts <strong>left</strong><br>Endothermic: ↑T → shifts <strong>right</strong></p>
+                </div>
+                
+                <div class="change-item chg-pressure">
+                    <div class="change-icon">💨</div>
+                    <h4>Pressure</h4>
+                    <p>↑ Pressure → shifts toward <strong>fewer gas moles</strong><br>↓ Pressure → shifts toward <strong>more gas moles</strong></p>
+                </div>
+                
+                <div class="change-item chg-volume">
+                    <div class="change-icon">📦</div>
+                    <h4>Volume</h4>
+                    <p>↓ Volume = ↑ Pressure<br>Shifts toward side with <strong>fewer moles</strong> of gas to relieve stress</p>
+                </div>
+                
+                <div class="change-item chg-catalyst">
+                    <div class="change-icon">⚡</div>
+                    <h4>Catalyst</h4>
+                    <p><strong>NO effect</strong> on equilibrium position!<br>Speeds up both forward and reverse reactions equally<br>System reaches equilibrium <em>faster</em></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SUMMARY BOX -->
+        <div style="background: linear-gradient(90deg, #1a1a2e 0%, #0f3460 100%); border-radius: 20px; padding: 30px; margin-top: 25px; color: white; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+            <h3 style="font-family: 'Montserrat', sans-serif; font-size: 1.5em; margin-bottom: 15px;">🎯 Key Takeaway</h3>
+            <p style="font-size: 1.1em; line-height: 1.8; max-width: 800px; margin: 0 auto;">
+                Chemical equilibrium is a <span style="color: #ffd700; font-weight: bold;">dynamic balance</span> where forward and reverse reaction rates are equal. 
+                The <span style="color: #ffd700; font-weight: bold;">equilibrium constant K</span> tells us the ratio of products to reactants, while 
+                <span style="color: #ffd700; font-weight: bold;">Le Chatelier's Principle</span> predicts how the system responds to external stresses—always shifting to 
+                <em>counteract</em> the change and restore balance.
+            </p>
+        </div>
+        
+        <!-- FOOTER -->
+        <div class="footer">
+            <p>AP Chemistry Module 6 Project | Digital Concept Map</p>
+            <p>Created by Salvador Siucho Garofolin | Course: AP Chemistry OL v5B — Stockam, Angela</p>
+        </div>
+    </div>
+</body>
+</html>
